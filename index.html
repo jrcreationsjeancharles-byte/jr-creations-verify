@@ -1,69 +1,71 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JR Verify</title>
+
+<title>JR Créations Verify</title>
 
 <style>
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f5f7fb;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:0;
 }
 
-.card{
-background:white;
-padding:30px;
-border-radius:15px;
-box-shadow:0 0 20px rgba(0,0,0,.1);
-width:90%;
-max-width:420px;
-text-align:center;
+.container{
+    max-width:600px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 0 15px rgba(0,0,0,.2);
+    text-align:center;
 }
 
 h1{
-color:#003b8e;
-margin-bottom:10px;
-}
-
-p{
-color:#666;
+    color:#0B5ED7;
 }
 
 input{
-width:100%;
-padding:12px;
-margin-top:20px;
-border:1px solid #ccc;
-border-radius:8px;
-font-size:16px;
+    width:90%;
+    padding:12px;
+    font-size:18px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin-top:20px;
 }
 
 button{
-width:100%;
-padding:12px;
-margin-top:15px;
-background:#003b8e;
-color:white;
-border:none;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
+    margin-top:20px;
+    padding:12px 30px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:#0B5ED7;
+    color:white;
+    cursor:pointer;
 }
 
 button:hover{
-background:#002d6b;
+    background:#084298;
 }
 
-.footer{
-margin-top:20px;
-font-size:13px;
-color:#777;
+#result{
+    margin-top:30px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.whatsapp{
+    display:inline-block;
+    margin-top:30px;
+    text-decoration:none;
+    background:#25D366;
+    color:white;
+    padding:12px 20px;
+    border-radius:8px;
 }
 </style>
 
@@ -71,30 +73,66 @@ color:#777;
 
 <body>
 
-<div class="card">
+<div class="container">
 
-<h1>JR VERIFY</h1>
+<h1>JR Créations Verify</h1>
 
-<p>
-Plateforme officielle de vérification des certificats
-de JR Créations
-</p>
+<p>Vérifiez l'authenticité d'un certificat.</p>
 
 <input
-type="text"
+id="certificateId"
 placeholder="Exemple : JR-2026-0001">
 
-<button>
-Vérifier le certificat
+<br>
+
+<button onclick="verifyCertificate()">
+Vérifier
 </button>
 
-<div class="footer">
+<div id="result"></div>
 
-© JR Créations
+<a class="whatsapp"
+href="https://wa.me/50935092672"
+target="_blank">
+Contacter sur WhatsApp
+</a>
 
 </div>
 
-</div>
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
+
+async function verifyCertificate(){
+
+const id=document.getElementById("certificateId").value.trim();
+
+if(id===""){
+document.getElementById("result").innerHTML="Antre ID sètifika a.";
+return;
+}
+
+document.getElementById("result").innerHTML="Vérification en cours...";
+
+try{
+
+const response=await fetch(API+"?id="+encodeURIComponent(id));
+
+const data=await response.json();
+
+document.getElementById("result").innerHTML=
+"<pre>"+JSON.stringify(data,null,2)+"</pre>";
+
+}catch(e){
+
+document.getElementById("result").innerHTML=
+"Erè pandan verifikasyon.";
+
+}
+
+}
+
+</script>
 
 </body>
 </html>
