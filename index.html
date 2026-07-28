@@ -98,7 +98,6 @@ Contacter sur WhatsApp
 </a>
 
 </div>
-
 <script>
 
 const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
@@ -117,16 +116,43 @@ document.getElementById("result").innerHTML="Vérification en cours...";
 try{
 
 const response=await fetch(API+"?id="+encodeURIComponent(id));
-
 const data=await response.json();
 
-document.getElementById("result").innerHTML=
-"<pre>"+JSON.stringify(data,null,2)+"</pre>";
+if(data.success){
 
-}catch(e){
+document.getElementById("result").innerHTML=`
+<div style="background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.2);margin-top:20px;text-align:left;">
 
-document.getElementById("result").innerHTML=
-"Erè pandan verifikasyon.";
+<h2 style="color:green;">🟢 CERTIFICAT AUTHENTIQUE</h2>
+
+<p><b>ID :</b> ${data.id}</p>
+<p><b>Nom :</b> ${data.nom}</p>
+<p><b>Formation :</b> ${data.formation}</p>
+<p><b>Date :</b> ${data.date}</p>
+<p><b>Lieu :</b> ${data.lieu}</p>
+<p><b>Statut :</b> ${data.statut}</p>
+<p>${data.message}</p>
+
+</div>
+`;
+
+}else{
+
+document.getElementById("result").innerHTML=`
+<div style="background:#ffe5e5;padding:20px;border-radius:10px;margin-top:20px;">
+
+<h2 style="color:red;">🔴 CERTIFICAT NON VALIDE</h2>
+
+<p>${data.message}</p>
+
+</div>
+`;
+
+}
+
+}catch(error){
+
+document.getElementById("result").innerHTML="❌ Erè pandan verifikasyon.";
 
 }
 
