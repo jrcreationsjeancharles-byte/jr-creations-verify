@@ -1,79 +1,21 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>JR Créations Verify</title>
 
-<style>
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:0;
-}
-
-.container{
-    max-width:600px;
-    margin:60px auto;
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    box-shadow:0 0 15px rgba(0,0,0,.2);
-    text-align:center;
-}
-
-h1{
-    color:#0B5ED7;
-}
-
-input{
-    width:90%;
-    padding:12px;
-    font-size:18px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    margin-top:20px;
-}
-
-button{
-    margin-top:20px;
-    padding:12px 30px;
-    font-size:18px;
-    border:none;
-    border-radius:8px;
-    background:#0B5ED7;
-    color:white;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#084298;
-}
-
-#result{
-    margin-top:30px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.whatsapp{
-    display:inline-block;
-    margin-top:30px;
-    text-decoration:none;
-    background:#25D366;
-    color:white;
-    padding:12px 20px;
-    border-radius:8px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
 <div class="container">
+
+<img src="logo.png" class="logo" alt="JR Créations">
 
 <h1>JR Créations Verify</h1>
 
@@ -98,67 +40,9 @@ Contacter sur WhatsApp
 </a>
 
 </div>
-<script>
 
-const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
-
-async function verifyCertificate(){
-
-const id=document.getElementById("certificateId").value.trim();
-
-if(id===""){
-document.getElementById("result").innerHTML="Antre ID sètifika a.";
-return;
-}
-
-document.getElementById("result").innerHTML="Vérification en cours...";
-
-try{
-
-const response=await fetch(API+"?id="+encodeURIComponent(id));
-const data=await response.json();
-
-if(data.success){
-
-document.getElementById("result").innerHTML=`
-<div style="background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.2);margin-top:20px;text-align:left;">
-
-<h2 style="color:green;">🟢 CERTIFICAT AUTHENTIQUE</h2>
-
-<p><b>ID :</b> ${data.id}</p>
-<p><b>Nom :</b> ${data.nom}</p>
-<p><b>Formation :</b> ${data.formation}</p>
-<p><b>Date :</b> ${data.date}</p>
-<p><b>Lieu :</b> ${data.lieu}</p>
-<p><b>Statut :</b> ${data.statut}</p>
-<p>${data.message}</p>
-
-</div>
-`;
-
-}else{
-
-document.getElementById("result").innerHTML=`
-<div style="background:#ffe5e5;padding:20px;border-radius:10px;margin-top:20px;">
-
-<h2 style="color:red;">🔴 CERTIFICAT NON VALIDE</h2>
-
-<p>${data.message}</p>
-
-</div>
-`;
-
-}
-
-}catch(error){
-
-document.getElementById("result").innerHTML="❌ Erè pandan verifikasyon.";
-
-}
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
