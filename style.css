@@ -98,3 +98,19 @@ button:hover{
     color:#777;
     font-size:14px;
 }
+
+.whatsapp{
+    display:inline-block;
+    margin-top:25px;
+    padding:14px 25px;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.whatsapp:hover{
+    background:#1ea952;
+}
