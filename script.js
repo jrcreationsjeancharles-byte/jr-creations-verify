@@ -22,16 +22,30 @@ async function verifyCertificate() {
             <div style="background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,.15);text-align:left;">
                 <h2 style="color:green;">🟢 CERTIFICAT AUTHENTIQUE</h2>
 
-                <p><strong>ID :</strong> ${data.id}</p>
-                <p><strong>Nom :</strong> ${data.nom}</p>
-                <p><strong>Formation :</strong> ${data.formation}</p>
-                <p><strong>Date :</strong> ${data.date}</p>
-                <p><strong>Lieu :</strong> ${data.lieu}</p>
-                <p><strong>Statut :</strong> ${data.statut}</p>
+                <p><strong>🆔 ID :</strong> ${data.id}</p>
+<p><strong>👤 Nom :</strong> ${data.nom}</p>
+<p><strong>📚 Formation :</strong> ${data.formation}</p>
+<p><strong>📅 Date :</strong> ${data.date}</p>
+<p><strong>📍 Lieu :</strong> ${data.lieu}</p>
+<p><strong>🔒 Statut :</strong> ${data.statut}</p>
 
-                <hr>
+<hr>
 
-                <p>${data.message}</p>
+<p>${data.message}</p>
+
+<a href="${data.certificat || '#'}"
+target="_blank"
+style="
+display:inline-block;
+margin-top:15px;
+padding:12px 20px;
+background:#0B3D91;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-weight:bold;">
+📄 Voir le certificat
+</a>
             </div>`;
         } else {
 
