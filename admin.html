@@ -120,6 +120,7 @@ message:document.getElementById("messageText").value,
 qr:document.getElementById("qr").value,
 certificat:document.getElementById("certificat").value
 
+ 
 };
 
 const rep=await fetch(API,{
@@ -143,6 +144,10 @@ document.getElementById("statut").value="Validé (e)";
 document.getElementById("messageText").value="";
 document.getElementById("qr").value="";
 document.getElementById("certificat").value="";
+
+ setTimeout(() => {
+  document.getElementById("message").innerHTML = "";
+}, 5000);
 }
 
 </script>
