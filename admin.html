@@ -67,8 +67,6 @@ text-align:center;
 
 <h1>JR Créations Admin</h1>
 
-<input id="id" placeholder="ID">
-
 <input id="nom" placeholder="Nom complet">
 
 <input id="formation" placeholder="Formation">
@@ -113,7 +111,6 @@ async function ajouterEleve(){
 
 const data={
 
-id:document.getElementById("id").value,
 nom:document.getElementById("nom").value,
 formation:document.getElementById("formation").value,
 date:document.getElementById("date").value,
@@ -135,7 +132,8 @@ body:JSON.stringify(data)
 
 const resultat=await rep.json();
 
-document.getElementById("message").innerHTML=resultat.message;
+document.getElementById("message").innerHTML =
+resultat.message + "<br><br><b>ID :</b> " + resultat.id;
 
 }
 
