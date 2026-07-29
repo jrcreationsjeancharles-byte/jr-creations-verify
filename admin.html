@@ -61,7 +61,7 @@ text-align:center;
 
 </head>
 
-<body>
+<body onload="login()">
 
 <div class="container">
 
@@ -94,6 +94,17 @@ Ajouter l'élève
 </div>
 
 <script>
+function login(){
+
+const password = prompt("Entrez le mot de passe administrateur");
+
+if(password !== "JR2026Admin"){
+
+alert("Mot de passe incorrect");
+
+document.body.innerHTML="<h2 style='text-align:center;margin-top:100px;'>Accès refusé</h2>";
+
+}
 
 const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
 
