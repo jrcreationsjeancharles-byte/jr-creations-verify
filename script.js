@@ -63,3 +63,15 @@ font-weight:bold;">
     }
 
 }
+
+window.onload = function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+
+    if (id) {
+        document.getElementById("certificateId").value = id;
+        verifyCertificate();
+    }
+
+};
