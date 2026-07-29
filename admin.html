@@ -1,0 +1,133 @@
+ <!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>JR Créations Admin</title>
+
+<style>
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:700px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 20px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#0B3D91;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#0B3D91;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#082d6b;
+}
+
+#message{
+margin-top:20px;
+font-weight:bold;
+text-align:center;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>JR Créations Admin</h1>
+
+<input id="id" placeholder="ID">
+
+<input id="nom" placeholder="Nom complet">
+
+<input id="formation" placeholder="Formation">
+
+<input id="date" placeholder="Date">
+
+<input id="lieu" placeholder="Lieu">
+
+<input id="statut" value="Validé (e)">
+
+<input id="messageText" placeholder="Message">
+
+<input id="qr" placeholder="Lien QR Code">
+
+<input id="certificat" placeholder="Lien Certificat PDF">
+
+<button onclick="ajouterEleve()">
+Ajouter l'élève
+</button>
+
+<div id="message"></div>
+
+</div>
+
+<script>
+
+const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
+
+async function ajouterEleve(){
+
+const data={
+
+id:document.getElementById("id").value,
+nom:document.getElementById("nom").value,
+formation:document.getElementById("formation").value,
+date:document.getElementById("date").value,
+lieu:document.getElementById("lieu").value,
+statut:document.getElementById("statut").value,
+message:document.getElementById("messageText").value,
+qr:document.getElementById("qr").value,
+certificat:document.getElementById("certificat").value
+
+};
+
+const rep=await fetch(API,{
+
+method:"POST",
+
+body:JSON.stringify(data)
+
+});
+
+const resultat=await rep.json();
+
+document.getElementById("message").innerHTML=resultat.message;
+
+}
+
+</script>
+
+</body>
+</html>
