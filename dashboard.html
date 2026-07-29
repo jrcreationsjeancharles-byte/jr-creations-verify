@@ -93,21 +93,49 @@ onkeyup="filtrer()">
 
 <script>
 
-function filtrer(){
+const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
 
-let input=document.getElementById("search").value.toLowerCase();
+async function chargerEtudiants(){
 
-let lignes=document.querySelectorAll("#tbody tr");
+  const rep = await fetch(API + "?action=list");
+  const data = await rep.json();
 
-lignes.forEach(ligne=>{
+  const tbody = document.getElementById("tbody");
+  tbody.innerHTML = "";
 
-let nom=ligne.cells[1].innerText.toLowerCase();
+  data.forEach(eleve => {
 
-ligne.style.display=nom.includes(input)?"":"none";
+    tbody.innerHTML += `
+      <tr>
+        <td>${eleve.id}</td>
+        <td>${eleve.nom}</td>
+        <td>${eleve.formation}</td>
+        <td>${eleve.date}</td>
+        <td>${eleve.lieu}</td>
+        <td>${eleve.statut}</td>
+      </tr>
+    `;
 
-});
+  });
 
 }
+
+function filtrer(){
+
+  let input=document.getElementById("search").value.toLowerCase();
+  let lignes=document.querySelectorAll("#tbody tr");
+
+  lignes.forEach(ligne=>{
+
+    let nom=ligne.cells[1].innerText.toLowerCase();
+
+    ligne.style.display=nom.includes(input)?"":"none";
+
+  });
+
+}
+
+window.onload = chargerEtudiants;
 
 </script>
 
