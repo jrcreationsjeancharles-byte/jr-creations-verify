@@ -8,7 +8,7 @@ async function verifyCertificate() {
         document.getElementById("result").innerHTML = "Antre ID sètifika a.";
         return;
     }
-
+ 
     document.getElementById("result").innerHTML = "Vérification en cours...";
 
     try {
