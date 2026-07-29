@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>JR Créations Dashboard</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+margin:0;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+h1{
+text-align:center;
+color:#0B3D91;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:15px 0;
+font-size:16px;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+}
+
+th{
+background:#0B3D91;
+color:#fff;
+}
+
+tr:nth-child(even){
+background:#f2f2f2;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Dashboard JR Créations</h1>
+
+<input
+type="text"
+id="search"
+placeholder="Rechercher par nom..."
+onkeyup="filtrer()">
+
+<table id="tableau">
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Nom</th>
+<th>Formation</th>
+<th>Date</th>
+<th>Lieu</th>
+<th>Statut</th>
+</tr>
+</thead>
+
+<tbody id="tbody">
+
+</tbody>
+
+</table>
+
+</div>
+
+<script>
+
+function filtrer(){
+
+let input=document.getElementById("search").value.toLowerCase();
+
+let lignes=document.querySelectorAll("#tbody tr");
+
+lignes.forEach(ligne=>{
+
+let nom=ligne.cells[1].innerText.toLowerCase();
+
+ligne.style.display=nom.includes(input)?"":"none";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
