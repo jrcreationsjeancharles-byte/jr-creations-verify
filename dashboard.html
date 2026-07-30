@@ -64,6 +64,10 @@ background:#f2f2f2;
 
 <h1>Dashboard JR Créations</h1>
 
+  <button onclick="logout()" style="background:red;color:white;padding:10px 15px;border:none;border-radius:8px;cursor:pointer;float:right;">
+🚪 Déconnexion
+</button>
+
 <input
 type="text"
 id="search"
@@ -139,6 +143,14 @@ function filtrer(){
 }
 
 window.onload = chargerEtudiants;
+
+  function logout(){
+
+    localStorage.removeItem("jr_admin");
+
+    window.location.href="login.html";
+
+}
 
 </script>
 
