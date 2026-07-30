@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Connexion - JR Créations Verify</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.login-box{
+width:380px;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+text-align:center;
+}
+
+.logo{
+width:110px;
+margin-bottom:15px;
+}
+
+h2{
+color:#0B3D91;
+margin-bottom:10px;
+}
+
+p{
+color:#666;
+margin-bottom:25px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:10px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#0B3D91;
+color:white;
+border:none;
+border-radius:10px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#082d6b;
+}
+
+#error{
+margin-top:15px;
+color:red;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<img src="20260726_235800.png" class="logo">
+
+<h2>Administration</h2>
+
+<p>Connectez-vous pour continuer</p>
+
+<input id="username" placeholder="Nom d'utilisateur">
+
+<input id="password" type="password" placeholder="Mot de passe">
+
+<button onclick="login()">
+Se connecter
+</button>
+
+<div id="error"></div>
+
+</div>
+
+<script>
+
+function login(){
+
+const username=document.getElementById("username").value;
+
+const password=document.getElementById("password").value;
+
+if(username==="Richardson" && password==="JR2026Admin"){
+
+window.location.href="dashboard.html";
+
+}else{
+
+document.getElementById("error").innerHTML="Nom d'utilisateur ou mot de passe incorrect.";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
