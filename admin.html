@@ -61,7 +61,7 @@ text-align:center;
 
 </head>
 
-<body onload="login()">
+<body>
 
 <div class="container">
 
@@ -83,7 +83,7 @@ text-align:center;
 
 <input id="certificat" placeholder="Lien Certificat PDF">
 
-<button onclick="ajouterEleve()">
+<button id="btnSave" onclick="ajouterEleve()">
 Ajouter l'élève
 </button>
 
@@ -96,19 +96,7 @@ Ajouter l'élève
  if(localStorage.getItem("jr_admin")!=="true"){
     window.location.href="login.html";
 }
-function login(){
 
-const password = prompt("Entrez le mot de passe administrateur");
-
-if(password !== "JR2026Admin"){
-
-alert("Mot de passe incorrect");
-
-document.body.innerHTML="<h2 style='text-align:center;margin-top:100px;'>Accès refusé</h2>";
-
-}
- 
-}
 const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
 
 async function ajouterEleve(){
@@ -154,6 +142,21 @@ document.getElementById("certificat").value="";
 }, 5000);
 }
 
+ const editId = localStorage.getItem("edit_id");
+
+if(editId){
+
+  document.querySelector("h1").innerHTML = "✏️ Modifier un élève";
+
+  document.getElementById("btnSave").innerHTML = "💾 Enregistrer les modifications";
+
+}
+
+  // Pou kounye a nou sèlman chanje tit la.
+  // Nan pwochen etap la n ap ranpli tout chan yo otomatikman.
+
+}
+ 
 </script>
 
 </body>
