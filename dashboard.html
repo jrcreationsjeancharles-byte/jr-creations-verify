@@ -84,6 +84,7 @@ onkeyup="filtrer()">
 <th>Date</th>
 <th>Lieu</th>
 <th>Statut</th>
+<th>Actions</th>
 </tr>
 </thead>
 
@@ -129,7 +130,8 @@ data.forEach(eleve => {
 
 });
 
-function filtrer(){
+}  
+  function filtrer(){
 
   let input=document.getElementById("search").value.toLowerCase();
   let lignes=document.querySelectorAll("#tbody tr");
