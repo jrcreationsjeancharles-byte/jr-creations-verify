@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Administration - JR Créations</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+margin:0;
+}
+
+header{
+background:#0B3D91;
+color:#fff;
+padding:20px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+}
+
+.container{
+max-width:900px;
+margin:30px auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:12px;
+box-shadow:0 3px 10px rgba(0,0,0,.15);
+text-align:center;
+font-size:20px;
+cursor:pointer;
+transition:.2s;
+}
+
+.card:hover{
+transform:scale(1.03);
+}
+
+.logout{
+background:#d32f2f;
+color:white;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+👋 Bon retou Administratè
+</header>
+
+<div class="container">
+
+<div class="card" onclick="location.href='admin.html'">
+👨‍🎓 Ajouter un élève
+</div>
+
+<div class="card" onclick="location.href='dashboard.html'">
+📋 Dashboard
+</div>
+
+<div class="card">
+⚙️ Paramètres
+</div>
+
+<div class="card logout" onclick="logout()">
+🚪 Déconnexion
+</div>
+
+</div>
+
+<script>
+if(localStorage.getItem("jr_admin")!=="true"){
+location.href="login.html";
+}
+
+function logout(){
+localStorage.removeItem("jr_admin");
+location.href="login.html";
+}
+</script>
+
+</body>
+</html>
