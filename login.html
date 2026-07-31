@@ -103,17 +103,32 @@ Se connecter
 </div>
 
 <script>
+  
+const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9ZYl4kRChayRXszsw3HvfNU62G9vIALqPUHMd9nD/exec";
 
-function login(){
+async function login(){
 
 const username=document.getElementById("username").value.trim();
-
 const password=document.getElementById("password").value;
 
-if(username==="Richardson" && password==="JR2026Admin"){
+document.getElementById("error").innerHTML="";
+
+try{
+
+const rep=await fetch(API,{
+method:"POST",
+body:JSON.stringify({
+action:"login",
+username:username,
+password:password
+})
+});
+
+const result=await rep.json();
+
+if(result.success){
 
 localStorage.setItem("jr_admin","true");
-
 window.location.href="admin-panel.html";
 
 }else{
@@ -122,7 +137,14 @@ document.getElementById("error").innerHTML="Nom d'utilisateur ou mot de passe in
 
 }
 
+}catch(e){
+
+document.getElementById("error").innerHTML="Erreur de connexion au serveur.";
+
 }
+
+}
+
 
 </script>
 
