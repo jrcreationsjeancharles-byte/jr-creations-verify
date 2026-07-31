@@ -101,7 +101,13 @@ const API="https://script.google.com/macros/s/AKfycbzMJvnHnBrx4V11GhZh2As-5jEh9Z
 
 async function ajouterEleve(){
 
+const editId = localStorage.getItem("edit_id");
+
 const data={
+
+action: editId ? "update" : "add",
+
+id: editId,
 
 nom:document.getElementById("nom").value,
 formation:document.getElementById("formation").value,
@@ -112,9 +118,7 @@ message:document.getElementById("messageText").value,
 qr:document.getElementById("qr").value,
 certificat:document.getElementById("certificat").value
 
- 
 };
-
 const rep=await fetch(API,{
 
 method:"POST",
@@ -123,10 +127,27 @@ body:JSON.stringify(data)
 
 });
 
-const resultat=await rep.json();
+const resultat = await rep.json();
 
-document.getElementById("message").innerHTML =
-resultat.message + "<br><br><b>ID :</b> " + resultat.id;
+if(data.action=="update"){
+
+  document.getElementById("message").innerHTML =
+  "✅ Élève modifié avec succès.";
+
+  localStorage.removeItem("edit_id");
+
+setTimeout(() => {
+
+  window.location.href = "dashboard.html";
+
+},1000);
+
+}else{
+
+  document.getElementById("message").innerHTML =
+  resultat.message + "<br><br><b>ID :</b> " + resultat.id;
+
+}
 
  document.getElementById("nom").value="";
 document.getElementById("formation").value="";
@@ -152,10 +173,30 @@ if(editId){
 
 }
 
-  // Pou kounye a nou sèlman chanje tit la.
-  // Nan pwochen etap la n ap ranpli tout chan yo otomatikman.
+async function chargerEleve(){
+
+  const editId = localStorage.getItem("edit_id");
+
+  if(!editId) return;
+
+  const rep = await fetch(API + "?action=getStudent&id=" + editId);
+
+  const eleve = await rep.json();
+
+  if(!eleve.success) return;
+
+  document.getElementById("nom").value = eleve.nom;
+  document.getElementById("formation").value = eleve.formation;
+  document.getElementById("date").value = eleve.date;
+  document.getElementById("lieu").value = eleve.lieu;
+  document.getElementById("statut").value = eleve.statut;
+  document.getElementById("messageText").value = eleve.message;
+  document.getElementById("qr").value = eleve.qr;
+  document.getElementById("certificat").value = eleve.certificat;
 
 }
+
+chargerEleve();
  
 </script>
 
