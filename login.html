@@ -106,15 +106,15 @@ Se connecter
 
 function login(){
 
-const username=document.getElementById("username").value;
+const username=document.getElementById("username").value.trim();
 
 const password=document.getElementById("password").value;
 
 if(username==="Richardson" && password==="JR2026Admin"){
 
-if(localStorage.getItem("jr_admin")!=="true"){
-    window.location.href="login.html";
+localStorage.setItem("jr_admin","true");
 
+window.location.href="admin-panel.html";
 
 }else{
 
