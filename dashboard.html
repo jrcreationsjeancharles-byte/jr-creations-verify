@@ -160,10 +160,24 @@ window.onload = chargerEtudiants;
   alert("Modification de : " + id);
 }
 
-function supprimer(id){
+async function supprimer(id){
 
-  if(confirm("Supprimer cet élève ?")){
-    alert("Suppression de : " + id);
+  if(!confirm("Supprimer cet élève ?")) return;
+
+  const rep = await fetch(API,{
+    method:"POST",
+    body:JSON.stringify({
+      action:"delete",
+      id:id
+    })
+  });
+
+  const result = await rep.json();
+
+  if(result.success){
+    chargerEtudiants();
+  }else{
+    alert("Erreur.");
   }
 
 }
