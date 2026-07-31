@@ -156,8 +156,12 @@ window.onload = chargerEtudiants;
 
 }
 
-  function modifier(id){
-  alert("Modification de : " + id);
+ function modifier(id){
+
+  localStorage.setItem("edit_id", id);
+
+  window.location.href="admin.html";
+
 }
 
 async function supprimer(id){
