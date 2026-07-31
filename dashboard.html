@@ -108,24 +108,26 @@ async function chargerEtudiants(){
   const data = await rep.json();
 
   const tbody = document.getElementById("tbody");
-  tbody.innerHTML = "";
+tbody.innerHTML = "";
 
-  data.forEach(eleve => {
+data.forEach(eleve => {
 
-    tbody.innerHTML += `
-      <tr>
-        <td>${eleve.id}</td>
-        <td>${eleve.nom}</td>
-        <td>${eleve.formation}</td>
-        <td>${eleve.date}</td>
-        <td>${eleve.lieu}</td>
-        <td>${eleve.statut}</td>
-      </tr>
-    `;
+  tbody.innerHTML += `
+    <tr>
+      <td>${eleve.id}</td>
+      <td>${eleve.nom}</td>
+      <td>${eleve.formation}</td>
+      <td>${eleve.date}</td>
+      <td>${eleve.lieu}</td>
+      <td>${eleve.statut}</td>
+      <td>
+        <button onclick="modifier('${eleve.id}')">✏️</button>
+        <button onclick="supprimer('${eleve.id}')">🗑️</button>
+      </td>
+    </tr>
+  `;
 
-  });
-
-}
+});
 
 function filtrer(){
 
@@ -152,6 +154,17 @@ window.onload = chargerEtudiants;
 
 }
 
+  function modifier(id){
+  alert("Modification de : " + id);
+}
+
+function supprimer(id){
+
+  if(confirm("Supprimer cet élève ?")){
+    alert("Suppression de : " + id);
+  }
+
+}
 </script>
 
 </body>
