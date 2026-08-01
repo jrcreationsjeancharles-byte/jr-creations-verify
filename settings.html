@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Paramètres</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+padding:40px;
+}
+
+.container{
+max-width:600px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.15);
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:15px;
+background:#0B3D91;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>⚙️ Paramètres</h2>
+
+<input id="oldPassword" type="password" placeholder="Ancien mot de passe">
+
+<input id="newPassword" type="password" placeholder="Nouveau mot de passe">
+
+<button onclick="changerPassword()">
+Enregistrer
+</button>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+function changerPassword(){
+
+document.getElementById("msg").innerHTML =
+"🚧 Fonction en cours de développement.";
+
+}
+
+</script>
+
+</body>
+</html>
