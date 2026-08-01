@@ -160,6 +160,42 @@ setTimeout(() => {
   document.getElementById("message").innerHTML =
   resultat.message + "<br><br><b>ID :</b> " + resultat.id;
 
+ const lien =
+"https://jrcreationsjeancharles-byte.github.io/jr-creations-verify/index.html?id=" + resultat.id;
+
+document.getElementById("qrcode").innerHTML = "";
+
+new QRCode(document.getElementById("qrcode"),{
+    text:lien,
+    width:300,
+    height:300,
+    correctLevel:QRCode.CorrectLevel.H
+});
+
+ setTimeout(()=>{
+
+  const img = document.querySelector("#qrcode img")
+           || document.querySelector("#qrcode canvas");
+
+  if(!img) return;
+
+  const btn = document.getElementById("downloadQR");
+
+  if(img.tagName==="IMG"){
+
+      btn.href = img.src;
+
+  }else{
+
+      btn.href = img.toDataURL("image/png");
+
+  }
+
+  btn.download = resultat.id + "-QR.png";
+
+  btn.style.display = "inline-block";
+
+},300);
 }
 
  document.getElementById("nom").value="";
