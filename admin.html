@@ -58,7 +58,7 @@ text-align:center;
 }
 
 </style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
 <body>
@@ -79,13 +79,26 @@ text-align:center;
 
 <input id="messageText" placeholder="Message">
 
-<input id="qr" placeholder="Lien QR Code">
 
 <input id="certificat" placeholder="Lien Certificat PDF">
 
 <button id="btnSave" onclick="ajouterEleve()">
 Ajouter l'élève
 </button>
+
+ <div id="qrcode" style="margin-top:20px;text-align:center;"></div>
+
+<br>
+
+<a id="downloadQR"
+style="display:none;
+background:#0B3D91;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+text-decoration:none;">
+📥 Télécharger le QR Code
+</a>
 
 <div id="message"></div>
 
@@ -115,7 +128,7 @@ date:document.getElementById("date").value,
 lieu:document.getElementById("lieu").value,
 statut:document.getElementById("statut").value,
 message:document.getElementById("messageText").value,
-qr:document.getElementById("qr").value,
+
 certificat:document.getElementById("certificat").value
 
 };
@@ -155,7 +168,6 @@ document.getElementById("date").value="";
 document.getElementById("lieu").value="";
 document.getElementById("statut").value="Validé (e)";
 document.getElementById("messageText").value="";
-document.getElementById("qr").value="";
 document.getElementById("certificat").value="";
 
  setTimeout(() => {
@@ -191,7 +203,7 @@ async function chargerEleve(){
   document.getElementById("lieu").value = eleve.lieu;
   document.getElementById("statut").value = eleve.statut;
   document.getElementById("messageText").value = eleve.message;
-  document.getElementById("qr").value = eleve.qr;
+ 
   document.getElementById("certificat").value = eleve.certificat;
 
 }
